@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Joyful Scribbles</title>
+    <style>
+        body {
+            font-family: 'Rustico';
+            margin: 0;
+            padding: 0;
+            background-color: #ccefff;
+            overflow-x: hidden;
+        }
+
+        header {
+            font-family: 'Monaca';
+            background-color: #87ceeb;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            animation: fadeIn 1s forwards;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 3em;
+            font-weight: bold;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        nav {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 12px 25px;
+            font-size: 18px;
+            margin: 0 12px;
+            background-color: #5ab0d6;
+            border-radius: 25px;
+            transition: background-color 0.3s;
+            opacity: 0;
+            animation: fadeIn 1.5s forwards 0.5s;
+            font-weight: 500;
+            letter-spacing: 1px;
+        }
+
+        nav a:hover {
+            background-color: #4682b4;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .home-section {
+            text-align: center;
+            padding: 70px 20px;
+            margin-bottom: 40px;
+            opacity: 0;
+            animation: fadeIn 1.5s forwards 1s;
+        }
+
+        .home-section h2 {
+            font-size: 3em;
+            color: #5ab0d6;
+            font-weight: bold;
+            text-transform: capitalize;
+            letter-spacing: 1.0px;
+            opacity: 0;
+            animation: fadeIn 1.0s forwards 1.0s;
+            margin-top: 3px;
+        }
+
+        .home-section p {
+            font-size: 1.5em;
+            margin-top: 15px;
+            color: #333;
+            font-weight: 300;
+            letter-spacing: 0.5px;
+            opacity: 0;
+            animation: fadeIn 1.5s forwards 2s;
+        }
+
+        .home-section .button {
+            background-color: #5ab0d6;
+            color: white;
+            padding: 18px 40px;
+            font-size: 18px;
+            border: none;
+            border-radius: 30px;
+            text-decoration: none;
+            margin-top: 50px;
+            transition: background-color 0.3s;
+            opacity: 0;
+            animation: fadeIn 1.5s forwards 2.5s;
+            font-weight: 600;
+        }
+
+        .home-section .button:hover {
+            background-color: #4682b4;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        footer {
+            background-color: #5ab0d6;
+            text-align: center;
+            color: white;
+            padding: 15px;
+            font-size: 1.1em;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+            box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
+            font-weight: 400;
+        }
+
+        .product-container {
+            display: none;
+            padding: 40px;
+            text-align: center;
+            background-color: #f9f9f9;
+        }
+
+        .search-bar {
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .search-bar input {
+            padding: 12px;
+            border-radius: 25px;
+            width: 50%;
+            font-size: 16px;
+            border: 2px solid #5ab0d6;
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+
+        .search-bar button {
+            padding: 12px 20px;
+            background-color: #5ab0d6;
+            border: none;
+            color: white;
+            border-radius: 25px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-left: 10px;
+            font-weight: 500;
+        }
+
+        .search-bar button:hover {
+            background-color: #4682b4;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .products-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            animation: fadeInUp 1.5s forwards;
+        }
+
+        .product-card {
+            background-color: white;
+            border: 1px solid #f1f1f1;
+            border-radius: 15px;
+            width: 250px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            opacity: 0;
+            animation: fadeInUp 1.5s forwards;
+        }
+
+        .product-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+        }
+
+        .product-card img {
+            max-width: 100%;
+            border-radius: 10px;
+        }
+
+        .product-card h3 {
+            font-size: 1.5em;
+            color: #5ab0d6;
+            margin-top: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .product-card .price {
+            font-size: 1.3em;
+            color: #333;
+            margin: 10px 0;
+            font-weight: bold;
+        }
+
+        .product-card button {
+            background-color: #5ab0d6;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            font-weight: 500;
+            letter-spacing: 1px;
+        }
+
+        .product-card button:hover {
+            background-color: #4682b4;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Top Right Cart Button */
+        .cart-btn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: #5ab0d6;
+            color: white;
+            padding: 15px 25px;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            transition: background-color 0.3s;
+        }
+
+        .cart-btn:hover {
+            background-color: #4682b4;
+        }
+
+        /* Keyframes for animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Cart Message */
+        .cart-message {
+            color: green;
+            font-size: 14px;
+            margin-top: 10px;
+        }
+
+        /* Total Price Display */
+        .total-price {
+            margin-top: 20px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Joyful Scribbles</h1>
+    </header>
+
+    <!-- Cart Button on the top right corner -->
+    <button class="cart-btn" onclick="viewCart()" style="display:none;">View Cart</button>
+
+    <nav>
+        <a href="#" onclick="goHome()">Home</a>
+    </nav>
+
+    <div class="home-section">
+        <h2>Welcome to the Stationery Wonderland!</h2>
+        <img src="C:\Users\sathya\Dropbox\My PC (LAPTOP-1D6AN4A1)\Downloads\image-600x300.jpg" alt="Stationery Products" class="welcome-image">
+        <p>Your one-stop shop for all school and office supplies.</p>
+        <a href="#products" onclick="showProducts()" class="button">Explore Our Products</a>
+    </div>
+
+    <div id="products" class="product-container">
+        <div class="search-bar">
+            <input type="text" id="search" placeholder="Search for products...">
+            <button onclick="searchProducts()">Search</button>
+        </div>
+        <div class="products-list" id="product-list">
+            <!-- Dynamic Product Cards will be displayed here -->
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Joyful Scribbles. Bringing joy to learning!</p>
+    </footer>
+
+    <script>
+        const products = [
+            { id: 1, name: "Notebook", description: "A5 size, 100 pages", price: 3.99,image: "C:\Users\sathya\Pictures\ADD project\image-300x200.jpg" },
+            { id: 2, name: "Pencil Set", description: "Pack of 10 pencils", price: 2.49, image: "C:\Users\sathya\Dropbox\My PC (LAPTOP-1D6AN4A1)\Downloads\image-300x200 (2).jpg" },
+            { id: 3, name: "Ruler", description: "30 cm transparent ruler", price: 1.50, image: "https://via.placeholder.com/300x200" },
+            { id: 4, name: "Eraser", description: "Soft eraser for clean erasing", price: 0.99, image: "https://via.placeholder.com/300x200" },
+            { id: 5, name: "Pen Set", description: "Set of 6 gel pens", price: 5.49, image: "https://via.placeholder.com/300x200" },
+            { id: 6, name: "Marker Set", description: "Pack of 12 colorful markers", price: 8.99, image: "https://via.placeholder.com/300x200" },
+            { id: 7, name: "Highlighter", description: "Yellow highlighter pen", price: 1.99, image: "https://via.placeholder.com/300x200" },
+            { id: 8, name: "Stapler", description: "Compact stapler with staples", price: 4.99, image: "https://via.placeholder.com/300x200" },
+            { id: 9, name: "Paper Clips", description: "Box of 100 paper clips", price: 2.00, image: "https://via.placeholder.com/300x200" },
+            { id: 10, name: "File Folder", description: "Set of 5 file folders", price: 6.99, image: "https://via.placeholder.com/300x200" },
+            { id: 11, name: "Scissors", description: "Sharp scissors for office use", price: 3.99, image: "https://via.placeholder.com/300x200" },
+            { id: 12, name: "Glue Stick", description: "Small glue stick for crafts", price: 1.49, image: "https://via.placeholder.com/300x200" },
+        ];
+
+        let cart = [];
+
+        function goHome() {
+            document.querySelector(".home-section").style.display = "block";
+            document.querySelector(".product-container").style.display = "none";
+            document.querySelector(".cart-btn").style.display = "none"; // Hide cart button on home page
+        }
+
+        function showProducts() {
+            document.querySelector(".home-section").style.display = "none";
+            document.querySelector(".product-container").style.display = "block";
+            document.querySelector(".cart-btn").style.display = "block"; // Show cart button on product page
+            displayProducts(products);
+        }
+
+        function searchProducts() {
+            const searchTerm = document.getElementById("search").value.toLowerCase();
+            const filteredProducts = products.filter(product =>
+                product.name.toLowerCase().includes(searchTerm) ||
+                product.description.toLowerCase().includes(searchTerm)
+            );
+            displayProducts(filteredProducts);
+        }
+
+        function displayProducts(productsToDisplay) {
+            const productList = document.getElementById("product-list");
+            productList.innerHTML = ""; 
+
+            productsToDisplay.forEach(product => {
+                const productCard = document.createElement("div");
+                productCard.classList.add("product-card");
+
+                productCard.innerHTML = `
+                    <img src="${product.image}" alt="${product.name}">
+                    <h3>${product.name}</h3>
+                    <p>${product.description}</p>
+                    <div class="price">$${product.price.toFixed(2)}</div>
+                    <button onclick="addToCart(${product.id})">Add to Cart</button>
+                    <div class="cart-message" id="message-${product.id}" style="display:none;">Added to Cart</div>
+                `;
+
+                productList.appendChild(productCard);
+            });
+        }
+
+        function addToCart(productId) {
+            const product = products.find(p => p.id === productId);
+            cart.push(product);
+
+            // Show the added message and hide it after 2 seconds
+            const message = document.getElementById(`message-${productId}`);
+            message.style.display = "block";
+            setTimeout(() => {
+                message.style.display = "none";
+            }, 2000);
+
+            // Update cart button to show the number of items
+            updateCartButton();
+        }
+
+        function updateCartButton() {
+            const cartButton = document.querySelector('.cart-btn');
+            cartButton.textContent = `Cart (${cart.length})`;
+        }
+
+        function viewCart() {
+            let totalPrice = 0;
+            cart.forEach(item => totalPrice += item.price);
+
+            alert(`You have ${cart.length} items in your cart. Total Price: $${totalPrice.toFixed(2)}`);
+        }
+    </script>
+</body>
+</html>
